@@ -84,3 +84,23 @@ def hill_decrypt(ciphertext, key_matrix):
     
     #4
     return numbers_to_text(decrypted_numbers)
+
+# TESTIMI 
+if __name__ == "__main__":
+    print("----------------------------------")
+    print("TESTIMI I HILL CIPHER")
+    print("----------------------------------")
+    
+    key = [[3, 3], [2, 5]]
+    
+    print(f"Matrica çelës: {key}")
+    print(f"Determinanti: {find_determinant(key)}")
+    
+    text = "DATA SECURITY"
+    print(f"\nTeksti origjinal: {text}")
+    
+    encrypted = hill_encrypt(text, key)
+    print(f"Teksti i enkriptuar: {encrypted}")
+    
+    decrypted = hill_decrypt(encrypted, key)
+    print(f"Teksti i dekriptuar: {decrypted}")
