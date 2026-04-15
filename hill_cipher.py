@@ -66,3 +66,21 @@ def hill_encrypt(plaintext, key_matrix):
     
     #4
     return numbers_to_text(encrypted_numbers)
+
+def hill_decrypt(ciphertext, key_matrix):
+
+    #1
+    inverse_matrix = matrix_inverse_2x2(key_matrix)
+    
+    #2
+    numbers = text_to_numbers(ciphertext)
+    
+    #3
+    decrypted_numbers = []
+    for i in range(0, len(numbers), 2):
+        pair = [numbers[i], numbers[i+1]]
+        decrypted_pair = multiply_matrix_vector(inverse_matrix, pair)
+        decrypted_numbers.extend(decrypted_pair)
+    
+    #4
+    return numbers_to_text(decrypted_numbers)
