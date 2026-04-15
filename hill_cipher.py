@@ -1,22 +1,47 @@
-# HILL CIPHER - ALGORITMI I ENKRIPTIMIT ME MATRICË
-
+# HILL CIPHER
 
 def text_to_numbers(text):
-    """
-    Kthen çdo shkronjë në numër: A=0, B=1, ..., Z=25
-    """
-    text = text.upper().replace(" ", "")  # Bëjmë shkronjat e mëdha dhe heqim hapësirat
+    text = text.upper().replace(" ", "") 
     numbers = []
     for char in text:
-        # ord('A') = 65, kështu që 'A' - 65 = 0
         numbers.append(ord(char) - ord('A'))
     return numbers
 
 def numbers_to_text(numbers):
-    """
-    Kthen numrat përsëri në shkronja: 0=A, 1=B, ...
-    """
     text = ""
     for num in numbers:
-        text += chr(num + ord('A'))  # 0+65='A', 1+65='B', etj.
+        text += chr(num + ord('A')) 
     return text
+
+def multiply_matrix_vector(matrix, vector):
+    result = []
+
+    r1 = (matrix[0][0] * vector[0] + matrix[0][1] * vector[1]) % 26
+    r2 = (matrix[1][0] * vector[0] + matrix[1][1] * vector[1]) % 26
+    result.append(r1)
+    result.append(r2)
+    
+    return result
+
+def find_determinant(matrix):
+    return (matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]) % 26
+
+def mod_inverse(a, m):
+    for i in range(1, m):
+        if (a * i) % m == 1:
+            return i
+    return None  
+
+def matrix_inverse_2x2(matrix, modulus=26):
+
+    det = find_determinant(matrix)
+    det_inv = mod_inverse(det, modulus)
+    
+    a, b = matrix[0][0], matrix[0][1]
+    c, d = matrix[1][0], matrix[1][1]
+    
+    inverse = [
+        [(d * det_inv) % modulus, (-b * det_inv) % modulus],
+        [(-c * det_inv) % modulus, (a * det_inv) % modulus]
+    ]
+    return inverse
