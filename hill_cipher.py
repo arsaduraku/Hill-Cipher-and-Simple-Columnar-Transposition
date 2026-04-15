@@ -45,3 +45,24 @@ def matrix_inverse_2x2(matrix, modulus=26):
         [(-c * det_inv) % modulus, (a * det_inv) % modulus]
     ]
     return inverse
+
+def hill_encrypt(plaintext, key_matrix):
+    #1
+    numbers = text_to_numbers(plaintext)
+    
+    #2
+    if len(numbers) % 2 != 0:
+        numbers.append(23)
+    
+    #3
+    encrypted_numbers = []
+    for i in range(0, len(numbers), 2):  
+        # Marrim dy numra
+        pair = [numbers[i], numbers[i+1]]
+        # Shumezojme me matricen
+        encrypted_pair = multiply_matrix_vector(key_matrix, pair)
+        # Shtojme ne liste
+        encrypted_numbers.extend(encrypted_pair)
+    
+    #4
+    return numbers_to_text(encrypted_numbers)
