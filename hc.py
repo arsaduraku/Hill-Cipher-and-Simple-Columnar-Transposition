@@ -77,3 +77,7 @@ def main():
                    
         else:
             print("Opsion i pavlefshem! Zgjidhni 0-2.")
+            
+# EKZEKUTIMI I PROGRAMIT
+if __name__ == "__main__":
+    main()
