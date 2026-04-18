@@ -158,9 +158,7 @@ SIDVIAHEGEEUXNRETAX
 * Shkronjat `X` përdoren për mbushje dhe hiqen gjatë dekriptimit
 * Renditja e kolonave është nga e majta në të djathtë (pa çelës kompleks)
 
-## Autori
 
-Projekt për implementim të algoritmeve klasike të kriptografisë në Python.
 
 
 
